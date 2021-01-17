@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.testng:testng:7.1.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.3' //библиотека логгера ch.qos.logback
+
+    implementation 'org.apache.httpcomponents:httpcomponents-client:4.5.12'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.6'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //  implementation 'io.rest-assured:rest-assured:4.3.2'
+    //  implementation "io.appium:java-client:7.4.1"
+}
+
+test {
+    useTestNG()
+}
