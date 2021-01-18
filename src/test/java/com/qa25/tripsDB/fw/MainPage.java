@@ -3,6 +3,9 @@ package com.qa25.tripsDB.fw;
 import com.qa25.tripsDB.tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class MainPage extends HelperBase {
 
@@ -35,5 +38,40 @@ public class MainPage extends HelperBase {
     public void fillToCity(String toCity) {
         type(By.id("destination-to"), toCity);
         clickEnter(By.id("destination-to"));
+    }
+
+    public void readData(String fromCity, String toCity) {
+        //put all routes in a list
+        List<WebElement> resultList = getItemsList(By.className("route-container"));
+
+        for(WebElement e : resultList) {
+
+            //take only the routes with 1 transport type
+            if(e.findElements(By.cssSelector(".transit-icon__mode")).size() == 1) {
+
+                //read transport type
+                String trType = e.findElement(By.tagName("h3")).getText();
+                trType = trType.contains(" ") ? trType.split(" ")[0] : trType;
+                //transform trip from word to number
+                //not done yet
+
+                //read trip duration
+                String trDuration = e.findElement(By.cssSelector(".route__duration")).getText().trim();
+                String durH = trDuration.trim().split(" ")[2].split("h")[0];
+                String durM = trDuration.trim().split(" ")[3].split("m")[0];
+                //count trip duration in minutes
+                int tripDuration = Integer.parseInt(durH) * 60 + Integer.parseInt(durM);
+
+                //read trip price
+                String trPrice = e.findElement(By.cssSelector(".route__price.tip-west")).getText();
+                trPrice = trPrice.split("€")[0];
+
+                System.out.println(fromCity + "," + toCity + "," +
+                                    trType + "," + tripDuration + "," + trPrice);
+                logger.info(fromCity + "," + toCity + "," +
+                        trType + "," + tripDuration + "," + trPrice);
+            }
+        }
+
     }
 }

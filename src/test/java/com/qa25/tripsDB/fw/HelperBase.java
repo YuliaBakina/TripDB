@@ -24,6 +24,10 @@ public class HelperBase {
         return wd.findElements(locator).size()>0;
     }
 
+    public int countElementsPresent(By locator){
+        return wd.findElements(locator).size();
+    }
+
     public String getText(By locator) {
         return wd.findElement(locator).getText();
     }

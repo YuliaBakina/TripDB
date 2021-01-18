@@ -5,8 +5,15 @@ import org.testng.annotations.Test;
 
 public class MainPageTests extends TestBase{
 
-    String fromCity = "London, England";
-    String toCity = "Paris, France";
+    /*String fromCity = "London, England";
+    String toCity = "Paris, France";*/
+
+    /*String fromCity = "Antwerp";
+    String toCity = "Aberdeen";*/
+
+    String fromCity = "Antwerp";
+    String toCity = "Alicante";
+
 
     @BeforeClass
     public void insurePreconditions(){
@@ -16,11 +23,13 @@ public class MainPageTests extends TestBase{
 
     @Test
     public void searchRoute(){
-        System.out.println("Test start");
 
+        //filling the fields
         appManager.getMainPage().fillFromCity(fromCity);
         appManager.getMainPage().fillToCity(toCity);
-        //appManager.getMainPage().click
+
+        //reading the search results
+        appManager.getMainPage().readData(fromCity, toCity);
 
     }
 
