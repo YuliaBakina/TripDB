@@ -57,10 +57,18 @@ public class MainPage extends HelperBase {
 
                 //read trip duration
                 String trDuration = e.findElement(By.cssSelector(".route__duration")).getText().trim();
-                String durH = trDuration.trim().split(" ")[2].split("h")[0];
-                String durM = trDuration.trim().split(" ")[3].split("m")[0];
+                String durD = "0", durH = "0", durM = "0";
+                if(trDuration.contains("days")) {
+                    durD = trDuration.trim().split(" ")[2].split("days")[0].trim();
+                    durH = trDuration.trim().split(" ")[4].split("h")[0];
+                 //   durM = trDuration.trim().split(" ")[5].split("m")[0];
+                }else {
+                    durH = trDuration.trim().split(" ")[2].split("h")[0];
+                    durM = trDuration.trim().split(" ")[3].split("m")[0];
+                }
+
                 //count trip duration in minutes
-                int tripDuration = Integer.parseInt(durH) * 60 + Integer.parseInt(durM);
+                int tripDuration = Integer.parseInt(durD) * 24 * 60 + Integer.parseInt(durH) * 60 + Integer.parseInt(durM);
 
                 //read trip price
                 String trPrice = e.findElement(By.cssSelector(".route__price.tip-west")).getText();

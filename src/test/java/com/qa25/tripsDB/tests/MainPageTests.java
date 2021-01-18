@@ -11,8 +11,11 @@ public class MainPageTests extends TestBase{
     /*String fromCity = "Antwerp";
     String toCity = "Aberdeen";*/
 
-    String fromCity = "Antwerp";
-    String toCity = "Alicante";
+    /*String fromCity = "Antwerp";
+    String toCity = "Alicante";*/
+
+    String fromCity = "Boston";
+    String toCity = "San Francisco";
 
 
     @BeforeClass
