@@ -38,10 +38,10 @@ public class HelperBase {
 
     public void type(By locator, String text) {
         click(locator);
-        wd.findElement(locator).clear(); //
+       // wd.findElement(locator).clear(); //
 
-/*        wd.findElement(locator).sendKeys(Keys.CONTROL + "a");
-        wd.findElement(locator).sendKeys(Keys.DELETE);*/
+        wd.findElement(locator).sendKeys(Keys.CONTROL + "a");
+        wd.findElement(locator).sendKeys(Keys.DELETE);
 
         if(text.trim() != null){
             wd.findElement(locator).sendKeys(text);
